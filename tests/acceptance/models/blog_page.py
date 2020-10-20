@@ -13,6 +13,9 @@ class BlogPage(BasePage):
 
     @property
     def post(self):
+        """
+        Return all the posts
+        """
         return self.driver.find_element(*BlogPageLocators.POST)
 
     @property

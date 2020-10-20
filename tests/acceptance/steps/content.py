@@ -1,6 +1,7 @@
 from behave import *
 
 from tests.acceptance.models.base_page import BasePage
+from tests.acceptance.models.blog_page import BlogPage
 
 use_step_matcher('re')  # it's allow to receive arguments from the navigation.feature
 
@@ -16,3 +17,14 @@ def step_impl(context):
 def step_impl(context, expect_title):
     tag_name = BasePage(context.driver)
     assert tag_name.title.text == expect_title
+
+
+@then("The post section is present on the page")
+def step_imp(context):
+    assert BlogPage(context.driver).posts_section.is_displayed()
+
+@then('The new post title is "(.*)"')
+def step_impl(context, text):
+    page = BlogPage(context.driver).post
+
+    test = 2

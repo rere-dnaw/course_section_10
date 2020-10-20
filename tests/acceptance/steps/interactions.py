@@ -1,6 +1,8 @@
 from behave import *
 
+from tests.acceptance.locators.new_post_page import NewPostPageLocators
 from tests.acceptance.models.base_page import BasePage
+from tests.acceptance.models.new_post_page import NewPostPage
 
 use_step_matcher('re')  # it's allow to receive arguments from the navigation.feature by using a regular expressions
 
@@ -20,3 +22,15 @@ def step_impl(context, link_text):
     #     found_links[0].click()
     # else:
     #     raise RuntimeError()
+
+
+@when('Enter "(.*)" into the "(.*)" field.')
+def step_impl(context, content, field):
+    return NewPostPage(context.driver).form_field(field).send_keys(content)
+
+
+@when('Press submit button.')
+def step_impl(context):
+    page = NewPostPage(context.driver)
+    page.submit_form.click()
+

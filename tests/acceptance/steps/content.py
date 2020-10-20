@@ -5,7 +5,7 @@ from tests.acceptance.models.base_page import BasePage
 use_step_matcher('re')  # it's allow to receive arguments from the navigation.feature
 
 
-@then('The title is present on the blog page.')
+@then('The title is present on the page.')
 def step_impl(context):
     page = BasePage(context.driver)
     assert page.title.is_displayed()
